@@ -4,6 +4,44 @@ import SwiftUI
 
 // MARK: - Model
 
+/// A model representing the status of a specific flight, including
+/// routing information, schedule details, and operational updates.
+///
+/// `FlightStatusData` provides a decodable representation of flight
+/// information typically retrieved from a remote service. The structure
+/// includes identifiers, routing metadata, timing details, and real-time
+/// operational status, making it suitable for display in flight boards,
+/// monitoring interfaces, and live-update dashboards.
+///
+/// Conformance to `Decodable` allows instances to be created directly
+/// from JSON responses. The type also conforms to `Identifiable`,
+/// enabling convenient use within SwiftUI lists and other dynamic views.
+///
+/// ## Properties
+///
+/// - `id`: A unique identifier for the flight record.
+/// - `flightNumber`: The airline-assigned flight number.
+/// - `departureCity`: The name or code of the departure city.
+/// - `arrivalCity`: The name or code of the arrival city.
+/// - `status`: A human-readable status string, such as “On Time” or “Delayed”.
+/// - `gate`: The assigned departure gate, if available.
+/// - `scheduledDeparture`: The scheduled departure time for the flight.
+///
+/// ## Example
+/// ```swift
+/// let flight = FlightStatusData(
+///     id: "QF123",
+///     flightNumber: "QF123",
+///     departureCity: "Sydney",
+///     arrivalCity: "Melbourne",
+///     status: "Boarding",
+///     gate: "Gate 15",
+///     scheduledDeparture: Date()
+/// )
+/// ```
+///
+/// Use this model when presenting or tracking live flight status
+/// information within your application.
 struct FlightStatusData: Decodable, Identifiable {
     let id: String
     let flightNumber: String
